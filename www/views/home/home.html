@@ -1,6 +1,17 @@
 <ion-view title="Home">
   <ion-content>
+    <div class="card" ng-hide="{{sitting.active}}">
+      <div class="item item-divider">No ongoing order detected</div>
+      <button class="item button button-positive button-block" ng-click="showModal()">Start a new order</button>
+    </div>
     <div class="card">
+      <div class="item item-divider">
+        Server info
+      </div>
+      <div class="item">Server IP: {{server.ip}}</div>
+      <div class="item">Menu elements: {{server.menu}}</div>
+    </div>
+<!--    <div class="card">
       <div class="item item-divider">Welcome to Sunshine Resort</div>
       <div class="item item-text-wrap">
         We hope you enjoy your stay! Here you can see the daily schedule. You can view the events list to add things to your schedule or discover local places in the menu.
@@ -11,7 +22,7 @@
       <div class="item item-divider">Current Weather</div>
       <div class="item" ng-if="!weather"><span class="icon ion-loading-d"></span></div>
       <div class="item item-text-wrap">
-        <p>Currently {{weather.main.temp}}&deg;F and {{weather.weather[0].description}}.</p>
+        <p>Currently {{weather.main.temp}}&deg;C and {{weather.weather[0].description}}.</p>
       </div>
       <a class="item button button-positive button-block" href="#/weather">See Forecast</a>
     </div>
@@ -27,6 +38,6 @@
       <div class="item item-icon-left" ng-click="openComments()">
         <i class="icon ion-chatbubble"></i> Send us a comment
       </div>
-    </div>
+    </div>-->
   </ion-content>
 </ion-view>

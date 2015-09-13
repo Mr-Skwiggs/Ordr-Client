@@ -1,0 +1,9 @@
+<ion-modal-view ng-controller="ModalServerCheckCtrl" title="ServCheckModal">
+  <ion-header-bar>
+    <h1 class="title">Checking server status...</h1>
+  </ion-header-bar>
+  <ion-content>
+    <ion-spinner></ion-spinner> {{status.message}}
+  </ion-content>
+  <ion-footer-bar><button class="button button-balanced" ng-hide="{{status.failed && status.busy}}" ng-click="check()">Try again</button></ion-footer-bar>
+</ion-modal-view>
