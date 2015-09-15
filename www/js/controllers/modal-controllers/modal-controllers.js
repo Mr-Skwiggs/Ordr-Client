@@ -1,5 +1,5 @@
 angular.module('App')
-        .controller('ModalServerCheckCtrl', function ($scope, API) {
+        .controller('ModalServerCheckCtrl', function ($scope) {
           var status = {
             message: 'Loading, please wait...',
             failed: false,

@@ -1,7 +1,8 @@
-angular.module('controllers').controller('HomeCtrl', function ($scope, $http, $timeout, $ionicLoading, $ionicPopup, Sitting, ModalService) {
+angular.module('App')
+        .controller('HomeCtrl', function ($scope, $http, $timeout, $ionicLoading, $ionicPopup, Sitting) {
 
-  var sitting = Sitting.new();
-  $scope.sitting = sitting;
+//  var sitting = Sitting.new();
+//  $scope.sitting = sitting;
 //  sitting.active = true;
 
   $scope.server = {
