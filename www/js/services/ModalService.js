@@ -1,12 +1,16 @@
 angular.module('App')
         .service('ModalService', function ($ionicModal, $rootScope) {
+          
+          var modals = [
+    
+          ];
 
           var init = function (path, $scope) {
 
             var promise;
             $scope = $scope || $rootScope.$new();
             path = 'modals/' + path;
-            console.log(path);
+//            console.log(path);
 
             promise = $ionicModal.fromTemplateUrl(path, {
               scope: $scope,

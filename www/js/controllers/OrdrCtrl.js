@@ -1,5 +1,5 @@
 angular.module('App')
-        .controller('OrdrCtrl', function ($scope, $ionicSideMenuDelegate, Sitting) {
+        .controller('OrdrCtrl', function ($scope, $ionicSideMenuDelegate, ModalService, Sitting) {
 
           $scope.openMenu = function () {
             $ionicSideMenuDelegate.toggleLeft();

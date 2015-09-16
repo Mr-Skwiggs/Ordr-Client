@@ -14,6 +14,10 @@ angular.module('router', [])
                   .state('about', {
                     url: '/about',
                     templateUrl: 'views/about.html'
+                  })
+                          .state('menu', {
+                            url: '/menu',
+                    templateUrl: 'views/menu.html'
                   });
 
           $urlRouterProvider.otherwise('/login');
