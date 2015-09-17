@@ -41,7 +41,6 @@ angular.module('App')
           this.getMenu = function (callback) {
             $http.get(baseUrl + '/client/menu')
                     .success(function (response) {
-                      console.log(response);
                       callback(response);
                     })
                     .error(function (err) {
@@ -49,7 +48,13 @@ angular.module('App')
                     });
           };
 
-          this.startSitting = function () {
-
+          this.startSitting = function (callback) {
+            $http.get(baseUrl + '/client/arrive')
+                    .success(function (response) {
+                      
+                    })
+                    .error(function (err) {
+                      callback(false, err);
+                    });
           };
         });

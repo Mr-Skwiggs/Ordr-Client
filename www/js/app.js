@@ -1,5 +1,5 @@
 angular.module('App', ['ionic', 'router'])
-        .run(function ($ionicPlatform, $location, Sitting, $http) {
+        .run(function ($ionicPlatform, API, $ionicLoading) {
           $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)

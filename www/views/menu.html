@@ -1,9 +1,24 @@
 <ion-view title="Menu" ng-controller="MenuCtrl">
+  <ion-header-bar class="bar-subheader item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="search" placeholder="Search..." data-ng-model="search">
+    </label>
+    <button ng-if="search.length" ng-click="clearSearch()" class="button button-icon ion-close input-button"></button>
+  </ion-header-bar>
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="(key, value) in menu.items">
-        
-      </ion-item>
+      <div ng-repeat="(genericType, specificTypes) in menu">
+        <ion-item class="item-dark generic-type">
+          {{genericType}}
+        </ion-item>
+        <div ng-repeat="(specificType, items) in specificTypes">
+          <ion-item class="item-divider specific-type">{{specificType}}</ion-item>
+          <ion-item class="item" ng-repeat="(itemName, item) in items">
+            {{itemName}} <span class="item-note">{{item.price| currency}}</span>
+          </ion-item>
+        </div>
+      </div>
     </ion-list>
   </ion-content>
 </ion-view>

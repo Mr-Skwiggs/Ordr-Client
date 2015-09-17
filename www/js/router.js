@@ -6,6 +6,11 @@ angular.module('router', [])
                     templateUrl: 'views/login.html',
                     controller: 'LoginCtrl'
                   })
+                  .state('register', {
+                    url: '/register',
+                    templateUrl: 'views/register.html',
+                    controller: 'RegisterCtrl'
+                  })
                   .state('home', {
                     url: '/',
                     templateUrl: 'views/home.html',
@@ -15,8 +20,8 @@ angular.module('router', [])
                     url: '/about',
                     templateUrl: 'views/about.html'
                   })
-                          .state('menu', {
-                            url: '/menu',
+                  .state('menu', {
+                    url: '/menu',
                     templateUrl: 'views/menu.html'
                   });
 
