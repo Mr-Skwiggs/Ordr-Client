@@ -1,10 +1,14 @@
 angular.module('App')
         .controller('RegisterCtrl', function ($scope, API) {
-          $scope.register = function(){
-            if($scope.fname && $scope.lname && $scope.alias && $scope.password){
-              API.register($scope.fname, $scope.lname, $scope.alias, $scope.password, function(reponse){
-                console.log("account created");
-              });
+          $scope.registerForm = {};
+          
+          $scope.register = function () {
+            console.log($scope.registerForm.length);
+            if ($scope.registerForm.length === 4) {
+//              API.register(this.fname, this.lname, this.alias, this.password, function (response) {
+//                console.log("account created");
+//              });
+              console.log("Register");
             } else {
               alert('Please make sure you filled all fields in');
             }

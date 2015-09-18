@@ -1,4 +1,4 @@
-angular.module('App', ['ionic', 'router'])
+angular.module('App', ['ionic'])
         .run(function ($ionicPlatform, API, $ionicLoading) {
           $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -10,4 +10,33 @@ angular.module('App', ['ionic', 'router'])
               StatusBar.styleDefault();
             }
           });
+        })
+
+        .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+          $stateProvider
+                  .state('login', {
+                    url: '/login',
+                    templateUrl: 'views/login.html',
+                    controller: 'LoginCtrl'
+                  })
+                  .state('register', {
+                    url: '/register',
+                    templateUrl: 'views/register.html',
+                    controller: 'RegisterCtrl'
+                  })
+                  .state('home', {
+                    url: '/',
+                    templateUrl: 'views/home.html',
+                    controller: 'HomeCtrl'
+                  })
+                  .state('about', {
+                    url: '/about',
+                    templateUrl: 'views/about.html'
+                  })
+                  .state('menu', {
+                    url: '/menu',
+                    templateUrl: 'views/menu.html'
+                  });
+
+          $urlRouterProvider.otherwise('/login');
         });

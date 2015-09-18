@@ -1,16 +1,27 @@
 angular.module('App')
-        .service('API', function ($http, $ionicLoading) {
+        .service('API', function ($http, $rootScope) {
           var SERVER_IP = 'http://192.168.1.30';
           var SERVER_PORT = '50505';
           var baseUrl = SERVER_IP + ':' + SERVER_PORT;
-
+          
+          function broadcast(message){
+            $rootScope.$broadcast(message);
+            console.log('Broadcast');
+          }
+          
+          function tryCB(callback, params){
+            if(typeof (callback) === 'function'){
+              callback.apply(this,params);
+            }
+          }
+          
           this.login = function (username, password, callback) {
             $http.post(baseUrl + '/client/login', [username, password])
                     .success(function () {
-                      callback(true);
+                      callback(null, true);
                     })
                     .error(function (err) {
-                      callback(err);
+                      callback(err, null);
                     });
           };
 
@@ -21,20 +32,22 @@ angular.module('App')
           this.checkAuth = function (callback) {
             $http.get(baseUrl + '/client/authed')
                     .success(function (response) {
-                      callback(response);
+                      callback(null, response);
                     })
                     .error(function (err) {
-                      callback(err);
+                      callback(err, null);
                     });
           };
 
-          this.checkServer = function (callback) {
+          this.checkServerStatus = function (callback) {
+            broadcast('API:checkServerStatus');
             $http.get(baseUrl + '/client/test')
                     .success(function () {
-                      callback(true);
+                      broadcast('API:checkServerStatus:online');
+                      
                     })
                     .error(function (err) {
-                      callback(err);
+                      $rootScope.$broadcast('API:checkServerStatus:offline', err);
                     });
           };
 

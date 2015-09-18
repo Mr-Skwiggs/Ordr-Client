@@ -1,4 +1,4 @@
-<ion-view title="Home">
+<ion-view title="Home" cache-view="true">
   <ion-content>
     <button class="button button-energized button-block" ng-show="serverStatus.busy">Checking server status...</button>
     <button class="button button-assertive button-block" ng-show="!serverStatus.online" ng-click='checkServStatus()'>Couldn't reach the server. <br/>
