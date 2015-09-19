@@ -1,5 +1,19 @@
 angular.module('App')
-        .controller('LoginCtrl', function ($scope, $http, $ionicSideMenuDelegate) {
-          $scope.hideMenuBtn = true;
+        .controller('LoginCtrl', function ($scope, $http, $ionicSideMenuDelegate, API, $state) {
+
+          $scope.credentials = {};
+
+          $scope.login = function () {
+            API.login($scope.credentials.username, $scope.credentials.password, function (err, success) {
+              if(!err){
+                $state.go('home');
+              }
+            });
+          };
+          
           $ionicSideMenuDelegate.canDragContent(false);
+          
+          $scope.canClick = function(){
+            return $scope.credentials.username && $scope.credentials.password;
+          };
         });

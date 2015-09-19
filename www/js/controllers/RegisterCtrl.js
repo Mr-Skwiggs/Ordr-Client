@@ -1,16 +1,43 @@
 angular.module('App')
-        .controller('RegisterCtrl', function ($scope, API) {
-          $scope.registerForm = {};
-          
-          $scope.register = function () {
-            console.log($scope.registerForm.length);
-            if ($scope.registerForm.length === 4) {
-//              API.register(this.fname, this.lname, this.alias, this.password, function (response) {
-//                console.log("account created");
-//              });
-              console.log("Register");
+        .controller('RegisterCtrl', function ($scope, API, Popup) {
+
+          $scope.fields = {};
+
+          $scope.showPassword2 = function () {
+            return $scope.fields.password !== undefined && $scope.fields.password !== '';
+          };
+
+          $scope.register = function (form) {
+            console.log(form);
+            if (fieldsValid()) {
+              API.register($scope.fields.fname,
+                      $scope.fields.lname,
+                      $scope.fields.alias,
+                      $scope.fields.password,
+                      function (response) {
+                        console.log("account created");
+                      });
             } else {
-              alert('Please make sure you filled all fields in');
+              Popup.passwordsDontMatch();
             }
           };
+
+          function fieldsValid() {
+            return $scope.fields.fname
+                    && $scope.fields.lname
+                    && $scope.fields.alias
+                    && ($scope.fields.password === $scope.fields.password2);
+          }
+
+          $scope.canClick = function () {
+            return $scope.fields.fname
+                    && $scope.fields.lname
+                    && $scope.fields.alias
+                    && $scope.fields.password
+                    && $scope.fields.password2;
+          };
+          
+//          $scope.$on('API:register:success', function(){
+//            $scope.showSuccess = true;
+//          });
         });

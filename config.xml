@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="ordr.client" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Ordr</name>
-  <description>&#xD;
-    Ordr client application.&#xD;
+  <description>
+    Ordr client application.
     </description>
-  <author email="dorian.grolaux@gmail.com" href="http://www.example.com">&#xD;
-     Dorian Grolaux&#xD;
+  <author email="dorian.grolaux@gmail.com" href="http://www.example.com">&#xD;&#xD;
+     Dorian Grolaux
     </author>
   <content src="index.html"/>
   <access origin="*"/>
