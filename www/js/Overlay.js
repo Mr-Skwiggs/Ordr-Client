@@ -51,8 +51,9 @@ angular.module('Overlay', [])
 //            });
           });
 
-          $rootScope.$on('API:register:error', function (even, args) {
+          $rootScope.$on('API:register:error', function (event, args) {
             hideOverlay();
+            Popup.alert(args);
 //            $ionicLoading.show({
 //              template: 'There was an error and your account could not be created',
 //              duration: 4000

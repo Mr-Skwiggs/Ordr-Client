@@ -7,6 +7,7 @@ angular.module('App')
             API.login($scope.credentials.username, $scope.credentials.password, function (err, success) {
               if(!err){
                 $state.go('home');
+                $scope.$emit('APP:history:clear');
               }
             });
           };

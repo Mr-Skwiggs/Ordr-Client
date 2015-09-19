@@ -1,18 +1,8 @@
 <ion-view title="Home" cache-view="true">
   <ion-content>
-    <button class="button button-energized button-block" ng-show="serverStatus.busy">Checking server status...</button>
-    <button class="button button-assertive button-block" ng-show="!serverStatus.online" ng-click='checkServStatus()'>Couldn't reach the server. <br/>
-      Click here to try again</button>
     <div class="card" ng-hide="{{sitting.active}}">
       <div class="item item-divider">No ongoing order detected</div>
       <button class="item button button-positive button-block" ng-click="showModal()">Start a new order</button>
-    </div>
-    <div class="card">
-      <div class="item item-divider">
-        Server info
-      </div>
-      <div class="item">Server IP: {{server.ip}}</div>
-      <div class="item">Menu elements: {{server.menu}}</div>
     </div>
 <!--    <div class="card">
       <div class="item item-divider">Welcome to Sunshine Resort</div>

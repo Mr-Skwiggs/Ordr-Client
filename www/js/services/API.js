@@ -4,8 +4,8 @@ angular.module('App')
           var SERVER_PORT = '50505';
           var baseUrl = SERVER_IP + ':' + SERVER_PORT;
 
-          function broadcast(message) {
-            $rootScope.$broadcast('API:' + message);
+          function broadcast(message, args) {
+            $rootScope.$broadcast('API:' + message, args);
           }
 
           function tryCB(callback, params) {
@@ -40,7 +40,7 @@ angular.module('App')
           this.checkAuth = function (callback) {
             $http.get(baseUrl + '/client/authed')
                     .success(function (response) {
-                      callback(null, response);
+                      tryCB(callback, [null, response]);
                     })
                     .error(function (err) {
                       callback(err, null);
@@ -91,13 +91,13 @@ angular.module('App')
               password: password
             };
             $http.post(baseUrl + '/client/register', params)
-                    .success(function (success) {
-                      if (success === true) {
+                    .success(function (response) {
+                      if (response === true) {
                         tryCB(callback, [null, true]);
                         broadcast('register:success');
                       } else {
 //                        tryCB(callback, [])
-                        broadcast('register:error', err);
+                        broadcast('register:error', response.error);
                       }
                     })
                     .error(function (err) {

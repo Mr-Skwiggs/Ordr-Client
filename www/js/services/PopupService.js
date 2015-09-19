@@ -51,5 +51,12 @@ angular.module('App')
             });
           };
           
+          popups.alert = function(message){
+            $ionicPopup.alert({
+              title: 'Error',
+              template: message
+            });
+          };
+          
           return popups;
         });
