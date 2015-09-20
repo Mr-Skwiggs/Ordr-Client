@@ -7,5 +7,11 @@ angular.module('App')
             this.order = new Order();
           };
           
+          Class.prototype.sitDown = function(id, table){
+            this.active = true;
+            this.id = id;
+            this.table = table;
+          };
+          
           return Class;
         });

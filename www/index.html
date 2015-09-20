@@ -27,6 +27,7 @@
     <script src="js/services/ModalService.js"></script>
     <script src="js/services/API.js"></script>
     <script src="js/services/PopupService.js"></script>
+    <script src="js/services/SilentServerCheckerService.js"></script>
     <script src="js/Overlay.js"></script>
   </head>
   <body ng-app="App" ng-controller="OrdrCtrl">
@@ -48,7 +49,7 @@
           <ion-item href="#/" nav-clear class="item-icon-left" menu-close><i class="icon ion-home"></i> Home</ion-item>
           <ion-item href="#/menu" nav-clear class="item-icon-left"  menu-close><i class="icon ion-clipboard"></i> Menu</ion-item>
           <ion-item href="#/about" nav-clear class="item-icon-left" menu-close> <i class="icon ion-ios7-information"></i> About</ion-item>
-          <button href="#/about" nav-clear class="button button-clear item item-icon-left" menu-close> <i class="icon ion-log-out"></i> Log-out</button>
+          <ion-item nav-clear class="item-icon-left item-assertive" menu-close ng-click="logout()"> <i class="icon ion-log-out"></i> Log-out</ion-item>
         </ion-list>
       </ion-content>
     </ion-side-menu>

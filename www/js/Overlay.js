@@ -13,7 +13,7 @@ angular.module('Overlay', [])
             hideOverlay();
             overlayShown = true;
             $ionicLoading.show({
-              template: '<p class="item-icon-left">Checking server status...<ion-spinner icon="lines"/></p>',
+              template: '<p>Checking server status...</p>',
               animation: 'fade-in'
             });
           });
@@ -27,8 +27,27 @@ angular.module('Overlay', [])
           });
 
           $rootScope.$on('API:checkServerStatus:offline', function (event, args) {
+            console.log('popup offline');
             hideOverlay();
             Popup.serverOffline();
+          });
+
+          $rootScope.$on('API:login', function (event, args) {
+            hideOverlay();
+            overlayShown = true;
+            $ionicLoading.show({
+              template: 'Logging in, please wait...',
+              animation: 'fade-in'
+            });
+          });
+          
+          $rootScope.$on('API:login:success', function (event, args) {
+            hideOverlay();
+          });
+          
+          $rootScope.$on('API:login:error', function (event, args) {
+            hideOverlay();
+            Popup.alert('Error', args);
           });
 
           $rootScope.$on('API:register', function (event, args) {
@@ -41,22 +60,25 @@ angular.module('Overlay', [])
 
           $rootScope.$on('API:register:success', function (even, args) {
             hideOverlay();
-            Popup.accountCreated(function(){
+            Popup.accountCreated(function () {
               $state.go('login');
             });
-//            $ionicLoading.show({
-//              template: 'Your account has been successfully created <br />' +
-//                      'You can now log in with your credentials',
-//              duration: 2000
-//            });
           });
 
           $rootScope.$on('API:register:error', function (event, args) {
             hideOverlay();
-            Popup.alert(args);
-//            $ionicLoading.show({
-//              template: 'There was an error and your account could not be created',
-//              duration: 4000
-//            });
+            Popup.alert('Error', args);
           });
+
+          $rootScope.$on('API:logout:success', function (event, args) {
+            hideOverlay();
+            Popup.alert('Success', args);
+          });
+          
+          $rootScope.$on('API:connection:lost', function (event, args) {
+            console.log('popup connection lost');
+            hideOverlay();
+            Popup.connectionLost();
+          });
+          
         });

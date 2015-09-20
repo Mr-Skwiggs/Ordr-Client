@@ -7,16 +7,12 @@ angular.module('App')
             return $scope.fields.password !== undefined && $scope.fields.password !== '';
           };
 
-          $scope.register = function (form) {
-            console.log(form);
+          $scope.register = function () {
             if (fieldsValid()) {
               API.register($scope.fields.fname,
                       $scope.fields.lname,
                       $scope.fields.alias,
-                      $scope.fields.password,
-                      function (response) {
-                        console.log("account created");
-                      });
+                      $scope.fields.password);
             } else {
               Popup.passwordsDontMatch();
             }

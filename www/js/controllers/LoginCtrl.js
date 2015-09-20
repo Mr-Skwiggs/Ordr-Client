@@ -5,16 +5,19 @@ angular.module('App')
 
           $scope.login = function () {
             API.login($scope.credentials.username, $scope.credentials.password, function (err, success) {
-              if(!err){
-                $state.go('home');
-                $scope.$emit('APP:history:clear');
+              if (!err) {
+                console.log(success);
+                if (success) {
+                  $state.go('home');
+                  $scope.$emit('APP:history:clear');
+                }
               }
             });
           };
-          
+
           $ionicSideMenuDelegate.canDragContent(false);
-          
-          $scope.canClick = function(){
+
+          $scope.canClick = function () {
             return $scope.credentials.username && $scope.credentials.password;
           };
         });
