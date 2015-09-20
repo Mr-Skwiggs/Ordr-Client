@@ -7,7 +7,6 @@ angular.module('App')
           var intervals = {};
 
           $rootScope.$on('API:connection:lost', function () {
-            console.log('broadcast catched, clearing intervals');
             clearIntervals();
           });
 
@@ -148,13 +147,11 @@ angular.module('App')
                         broadcast('register:success');
                       } else {
                         tryCB(callback, [response.error]);
-                        console.log('register success error');
                         broadcast('register:error', response.error);
                       }
                     })
                     .error(function (err) {
                       tryCB(callback, [err, null]);
-                      console.log('register error');
                       broadcast('register:error');
                     });
           };
