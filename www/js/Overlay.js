@@ -27,7 +27,6 @@ angular.module('Overlay', [])
           });
 
           $rootScope.$on('API:checkServerStatus:offline', function (event, args) {
-            console.log('popup offline');
             hideOverlay();
             Popup.serverOffline();
           });
@@ -76,7 +75,6 @@ angular.module('Overlay', [])
           });
           
           $rootScope.$on('API:connection:lost', function (event, args) {
-            console.log('popup connection lost');
             hideOverlay();
             Popup.connectionLost();
           });
