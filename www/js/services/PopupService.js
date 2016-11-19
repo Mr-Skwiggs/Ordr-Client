@@ -83,11 +83,11 @@ angular.module('App')
             });
           };
 
-          function capitalize(message) { 
+          function capitalize(message) {
             var firstLetter = message.substr(0, 1);
             firstLetter = firstLetter.toUpperCase();
             return firstLetter + message.substr(1, message.length - 1);
           }
-          
+
           return popups;
         });

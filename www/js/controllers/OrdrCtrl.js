@@ -41,4 +41,9 @@ angular.module('App')
             console.log('emit catched');
             $ionicViewService.clearHistory();
           });
+          
+          $scope.logout = function() {
+            API.logout();
+            $state.go('login');
+          }
         }); 

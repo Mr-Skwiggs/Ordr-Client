@@ -1,15 +1,20 @@
 <ion-view title="Home" cache-view="true">
-  <ion-content>
-    <div class="card" ng-show="{{!sitting.active}}">
-      <div class="item item-divider center-card-title">Ready to start</div>
-      <button class="item button button-positive button-block" ng-click="sitDown()">Let the staff know I'm here!</button>
-    </div>
-    
-    <div class="card" ng-show="{{sitting.active && !sitting.order.active}}">
-      <div class="item item-divider">No ongoing order detected</div>
-      <button class="item button button-positive button-block" ng-click="showModal()">Start a new order</button>
-    </div>
-<!--    <div class="card">
+	<ion-content>
+		<div class="card" ng-show="{{!sitting.active}}">
+			<div class="item item-divider center-card-title">Ready to start</div>
+			<button class="item button button-positive button-block" ng-click="sitDown()">Let the staff know I'm here!</button>
+		</div>
+
+		<div class="card" ng-show="{{sitting.active}}">
+			<div class="item item-divider center-card-title">Just a moment...</div>
+			<div class="item">We're confirming your presence :)</div>
+		</div>
+
+		<div class="card" ng-show="{{sitting.active && !sitting.order.active}}">
+			<div class="item item-divider">No ongoing order detected</div>
+			<button class="item button button-positive button-block" ng-click="showModal()">Start a new order</button>
+		</div>
+		<!--    <div class="card">
       <div class="item item-divider">Welcome to Sunshine Resort</div>
       <div class="item item-text-wrap">
         We hope you enjoy your stay! Here you can see the daily schedule. You can view the events list to add things to your schedule or discover local places in the menu.
@@ -37,5 +42,5 @@
         <i class="icon ion-chatbubble"></i> Send us a comment
       </div>
     </div>-->
-  </ion-content>
+	</ion-content>
 </ion-view>

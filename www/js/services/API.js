@@ -1,36 +1,36 @@
 angular.module('App')
-        .service('API', function ($http, $rootScope) {
-          var SERVER_IP = 'http://192.168.1.30';
+        .service('API', function ($http, $rootScope, Poller) {
+          var SERVER_IP = 'http://localhost';
           var SERVER_PORT = '50505';
           var baseUrl = SERVER_IP + ':' + SERVER_PORT;
 
-          var intervals = {};
+//          var intervals = {};
 
-          $rootScope.$on('API:connection:lost', function () {
-            clearIntervals();
-          });
+//          $rootScope.$on('API:connection:lost', function () {
+//            clearIntervals();
+//          });
 
-          function clearIntervals() {
-            console.log(intervals);
-            for (var key in intervals) {
-              console.log(key);
-              if (intervals.hasOwnProperty(key)) {
-                var obj = intervals[key];
-                for (var prop in obj) {
-                  console.log(obj);
-                  // important check that this is objects own property 
-                  // not from prototype prop inherited
-                  if (obj.hasOwnProperty(prop)) {
-                    console.log(prop + " = " + obj[prop]);
-                  }
-                }
-              }
-            }
-//            intervals.forEach(function (interval) {
-//              clearInterval(interval);
-//            });
-//            intervals = [];
-          }
+//          function clearIntervals() {
+//            console.log(intervals);
+//            for (var key in intervals) {
+//              console.log(key);
+//              if (intervals.hasOwnProperty(key)) {
+//                var obj = intervals[key];
+//                for (var prop in obj) {
+//                  console.log(obj);
+//                  // important check that this is objects own property 
+//                  // not from prototype prop inherited
+//                  if (obj.hasOwnProperty(prop)) {
+//                    console.log(prop + " = " + obj[prop]);
+//                  }
+//                }
+//              }
+//            }
+////            intervals.forEach(function (interval) {
+////              clearInterval(interval);
+////            });
+////            intervals = [];
+//          }
 
           function broadcast(message, args) {
             $rootScope.$broadcast('API:' + message, args);
@@ -162,19 +162,20 @@ angular.module('App')
               $http.post(baseUrl + '/client/arrive')
                       .success(function (response) {
                         if (response.success) {
-                          intervals.sitDown = setInterval(function () {
+                          Poller.run('sitdown', function () {
                             getSitDownAck(function (response) {
                               if (response.success) {
                                 broadcast('sitdown:success');
                                 resolve(true, response.details);
-                                clearInterval(intervals.sitDown);
                               } else if (response.error) {
                                 broadcast('sitdown:error', response.error);
                                 resolve(false, response.error);
-                                clearInterval(intervals.sitDown);
+                                Poller.removeInterval('sitdown');
+                              } else {
+                                console.log('Sitdown Ack++');
                               }
                             });
-                          }, 100);
+                          }, 1000);
                         }
                       })
                       .error(function (err) {
@@ -186,6 +187,7 @@ angular.module('App')
           };
 
           function getSitDownAck(callback) {
+            broadcast('sitdown:ack');
             $http.get(baseUrl + '/client/arriveAck')
                     .success(function (response) {
                       callback(response);

@@ -39,11 +39,11 @@ angular.module('Overlay', [])
               animation: 'fade-in'
             });
           });
-          
+
           $rootScope.$on('API:login:success', function (event, args) {
             hideOverlay();
           });
-          
+
           $rootScope.$on('API:login:error', function (event, args) {
             hideOverlay();
             Popup.alert('Error', args);
@@ -73,10 +73,30 @@ angular.module('Overlay', [])
             hideOverlay();
             Popup.alert('Success', args);
           });
-          
+
           $rootScope.$on('API:connection:lost', function (event, args) {
             hideOverlay();
             Popup.connectionLost();
           });
-          
+
+
+          $rootScope.$on('API:sitdown:ack', function (event, args) {
+            if (!overlayShown) {
+              overlayShown = true;
+              $ionicLoading.show({
+                template: 'The staff will shortly confirm your presence, please wait...',
+                animation: 'fade-in'
+              });
+            }
+          });
+
+          $rootScope.$on('API:sitdown:success', function (event, args) {
+            hideOverlay();
+            overlayShown = true;
+            $ionicLoading.show({
+              template: 'Okay, you\'re good to go !',
+              animation: 'fade-in',
+              duration: 1000
+            });
+          });
         });

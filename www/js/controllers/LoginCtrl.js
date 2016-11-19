@@ -20,4 +20,8 @@ angular.module('App')
           $scope.canClick = function () {
             return $scope.credentials.username && $scope.credentials.password;
           };
+          
+//          $scope.credentials.save.on('click', function(){
+//              console.log($scope.credentials.save);
+//          });
         });

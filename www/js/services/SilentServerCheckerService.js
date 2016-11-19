@@ -1,5 +1,5 @@
 angular.module('App')
-        .service('SilentServerChecker', function (API, $rootScope) {
+        .service('SilentServerChecker', function (API) {
           var running = false;
           var interval;
           
