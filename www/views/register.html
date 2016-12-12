@@ -1,32 +1,32 @@
 <ion-view title="Register">
-  <ion-content>
-    <form name="registerForm" ng-submit=" registerForm.$valid && register()" novalidate>
-      <ion-list id="register-list">
-        <label class="item item-input">
+	<ion-content>
+		<form name="registerForm" ng-submit=" registerForm.$valid && register()" novalidate>
+			<ion-list id="register-list">
+				<label class="item item-input">
           <span class="input-label">First name</span>
           <input type="text" ng-model="fields.fname" required>
         </label>
-        <label class="item item-input">
+				<label class="item item-input">
           <span class="input-label">Last name</span>
           <input type="text" ng-model="fields.lname" required>
         </label>
-        <label class="item item-input">
+				<label class="item item-input">
           <span class="input-label">Alias</span>
           <input type="text" ng-model="fields.alias" required>
         </label>
-        <label class="item item-input">
+				<label class="item item-input">
           <span class="input-label">Password</span>
           <input type="password" ng-minlength="1" ng-model="fields.password">
         </label>
-        <label class="item item-input" ng-show="showPassword2()">
+				<label class="item item-input" ng-show="showPassword2()">
           <span class="input-label">Re type</span>
           <input type="password" ng-minlength="1" ng-model="fields.password2">
         </label>
-      </ion-list>
-      <div class="padding">
-        <button class="button button-balanced button-block" ng-disabled="!canClick()" type="submit">Create account</button>
-        <a href='#/login' class="button button-positive button-block">Back</a>
-      </div>
-    </form>
-  </ion-content>
+			</ion-list>
+			<div class="padding">
+				<button class="button button-balanced button-block" ng-disabled="!canClick()" type="submit">Create account</button>
+				<a href="#/login" class="button button-positive button-block ">Back</a>
+			</div>
+		</form>
+	</ion-content>
 </ion-view>

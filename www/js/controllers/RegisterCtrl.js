@@ -1,39 +1,39 @@
 angular.module('App')
-        .controller('RegisterCtrl', function ($scope, API, Popup) {
+	.controller('RegisterCtrl', function ($scope, API, Popup) {
 
-          $scope.fields = {};
+		$scope.fields = {};
 
-          $scope.showPassword2 = function () {
-            return $scope.fields.password !== undefined && $scope.fields.password !== '';
-          };
+		$scope.showPassword2 = function () {
+			return $scope.fields.password !== undefined && $scope.fields.password !== '';
+		};
 
-          $scope.register = function () {
-            if (fieldsValid()) {
-              API.register($scope.fields.fname,
-                      $scope.fields.lname,
-                      $scope.fields.alias,
-                      $scope.fields.password);
-            } else {
-              Popup.passwordsDontMatch();
-            }
-          };
+		$scope.register = function () {
+			if (fieldsValid()) {
+				API.register($scope.fields.fname,
+					$scope.fields.lname,
+					$scope.fields.alias,
+					$scope.fields.password);
+			} else {
+				Popup.passwordsDontMatch();
+			}
+		};
 
-          function fieldsValid() {
-            return $scope.fields.fname
-                    && $scope.fields.lname
-                    && $scope.fields.alias
-                    && ($scope.fields.password === $scope.fields.password2);
-          }
+		function fieldsValid() {
+			return $scope.fields.fname &&
+				$scope.fields.lname &&
+				$scope.fields.alias &&
+				($scope.fields.password === $scope.fields.password2);
+		}
 
-          $scope.canClick = function () {
-            return $scope.fields.fname
-                    && $scope.fields.lname
-                    && $scope.fields.alias
-                    && $scope.fields.password
-                    && $scope.fields.password2;
-          };
-          
-//          $scope.$on('API:register:success', function(){
-//            $scope.showSuccess = true;
-//          });
-        });
+		$scope.canClick = function () {
+			return $scope.fields.fname &&
+				$scope.fields.lname &&
+				$scope.fields.alias &&
+				$scope.fields.password &&
+				$scope.fields.password2;
+		};
+
+		//          $scope.$on('API:register:success', function(){
+		//            $scope.showSuccess = true;
+		//          });
+	});

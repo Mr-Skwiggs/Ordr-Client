@@ -1,0 +1,9 @@
+{
+	"angular": true,
+	"curly": true,
+	"eqeqeq": true,
+	"es6": true,
+	"esnext": true,
+	"jquery": true,
+	"browser": true
+}
