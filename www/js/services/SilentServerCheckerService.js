@@ -22,9 +22,9 @@ angular.module('App')
 
 		this.toggle = function () {
 			if (running) {
-				disable();
+				this.disable();
 			} else {
-				enable();
+				this.enable();
 			}
 		};
 	});
