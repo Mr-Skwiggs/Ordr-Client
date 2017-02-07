@@ -170,6 +170,7 @@ angular.module('App')
 								getSitDownAck(function (response) {
 									if (response.success) {
 										broadcast('sitdown:success');
+										Poller.removeInterval('sitdown');
 										resolve(true, response.details);
 									} else if (response.error) {
 										broadcast('sitdown:error', response.error);
